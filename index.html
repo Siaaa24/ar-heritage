@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Heritage Walk with AR - Demo</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- A-Frame (stable release) -->
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+
+  <!-- AR.js for A-Frame (marker-based) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.1.1/aframe-ar.min.js"></script>
+</head>
+<body>
+  <!-- Landing / intro -->
+  <div id="landing">
+    <h1>Heritage Walk with AR</h1>
+    <p>Click <strong>Start Experience</strong>, allow camera access, then show the <em>Hiro marker</em> (printed or on another device) to the webcam.</p>
+
+    <!-- Hiro marker (save/print or open on your phone) -->
+    <img id="hiro-marker" src="https://upload.wikimedia.org/wikipedia/commons/4/48/Hiro_marker_ARjs.png" alt="Hiro marker" width="220"/>
+
+    <div style="margin-top:18px;">
+      <button id="startBtn">Start Experience</button>
+    </div>
+
+    <footer>By Siaaa</footer>
+  </div>
+  <!-- AR scene (hidden until Start) -->
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" style="display:none;">
+    <a-marker preset="hiro">
+      <!-- Simple demo object -->
+      <a-box position="0 0.5 0"
+             rotation="0 45 0"
+             animation="property: rotation; to: 0 405 0; loop: true; dur: 4000"
+             scale="0.5 0.5 0.5"
+             material="shader: standard; color: #ff8c00;">
+      </a-box>
+
+      <a-text value="Heritage Demo" position="-1 1 0" scale="2 2 2"></a-text>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script src="script.js"></script>
+</body>
+</html>
